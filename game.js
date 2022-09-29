@@ -4,6 +4,7 @@ const characterFormButton = document.querySelector('.create-button')
 const gameMenu = document.querySelector('.game-menu')
 const startGameContainer = document.querySelector('.start-game-container')
 const startGameButton = document.querySelector('.startgame-button')
+const gameAlert = document.querySelector('.game-alert')
 const goBackButton = document.querySelector('.goback-button')
 const playerOneContainer = document.querySelector('.player-one-container')
 const playerTwoContainer = document.querySelector('.player-two-container')
@@ -20,27 +21,67 @@ const winCombos = [
     [2, 4, 6]
 ]
 
+/*
+I think I could majorly improve the code instead of using 2 different functions to calculate playerOne win and playerTwo win (computer)
+I could use the factory function, also could use the factory function to control gameAlert, style etc..
+Not sure, but maybe I should revamp the code
+*/
+
 gameGrid.forEach((grid) => {
     grid.addEventListener('click', function () {
+        if (grid.innerHTML != '') { return; }
         if (blockGrid === false) {
             grid.innerHTML = playerOne.playerMark
             gameBoard[grid.classList.value] = (playerOne.playerMark)
             grid.style.backgroundColor = '#930C10'
+            computerTurn();
             if (playerOne.checkWinnings() === true) {
-                playerOne.checkWinnings().innerHTML = 'R'
+                gameAlert.innerHTML = `${playerOne.playerName} won!`;
+                gameAlert.style.visibility = 'visible';
                 playerTwo.takeDamage(20);
                 blockGrid = true;
                 setTimeout(function () {
+                    gameAlert.style.visibility = 'collapse';
                     playerOne.roundWinner()
-                }, 1000);
+                }, 2000);
                 playerTwo.updatePlayerInfo();
             }
-
         }
     })
-}
+})
 
-)
+function computerTurn() {
+    gridsAreFull = gameBoard.every((grid) => grid != '')
+    computerChoice = Math.floor(Math.random() * gameBoard.length)
+    grid = document.getElementById(computerChoice)
+    if (gridsAreFull === true && blockGrid != true) {
+        gameAlert.innerHTML = 'Draw!'
+        gameAlert.style.visibility = 'visible';
+        setTimeout(function () {
+            gameAlert.style.visibility = 'collapse';
+            playerTwo.declareDraw();
+        }, 2000);
+    }
+    else if (gameBoard[computerChoice] != '') {
+        computerTurn();
+    }
+    else {
+        grid.innerHTML = playerTwo.playerMark
+        grid.style.backgroundColor = '#47780c'
+        gameBoard[grid.classList.value] = (playerTwo.playerMark)
+        if (playerTwo.checkWinnings() === true) {
+            gameAlert.innerHTML = `${playerTwo.playerName} won!`;
+            gameAlert.style.visibility = 'visible';
+            playerOne.takeDamage(20);
+            blockGrid = true;
+            setTimeout(function () {
+                gameAlert.style.visibility = 'collapse';
+                playerTwo.roundWinner()
+            }, 2000);
+            playerOne.updatePlayerInfo();
+        }
+    }
+}
 
 characterFormButton.addEventListener('click', function (e) {
     let pName = document.forms["character-creation"]["playerName"].value
@@ -110,6 +151,15 @@ const gameControl = (playerName, playerClass, playerMark, playerDOM) => {
                 })
             })
         },
+        declareDraw() {
+            gameBoard = new Gameboard();
+            blockGrid = false;
+            gameGrid.forEach((grid) => {
+                grid.innerHTML = ''
+                grid.style.backgroundColor = ''
+
+            })
+        },
         roundWinner() {
             //Need to clear board, add a winner effect (maybe the winning tiles glow?)
             //Add a delay before clearing board so its clear that there is a winner
@@ -144,42 +194,3 @@ const Gameboard = function () {
 }
 
 let gameBoard = new Gameboard();
-
-
-
-
-
-
-
-
-
-// const gameController = () => {
-//     const playerLoseRound = () => {
-//         playerOne.loseHealth(10)
-//     }
-//     return { playerLoseRound, createCharacter, Character }
-// }
-
-
-
-//////////////I have to figure how to control the class via the "gameController"///
-// function Character(playerName, playerClass) {
-//     switch (playerClass) {
-//         case 'warrior':
-//             maxHealth = 120;
-//             break;
-//         case 'archer':
-//             maxHealth = 100;
-//             break;
-//         case 'mage':
-//             maxHealth = 80;
-//             break;
-//     }
-//     this.playerName = playerName;
-//     this.playerClass = playerClass;
-//     this.maxHealth = maxHealth;
-//     this.currentHealth = maxHealth;//player starts with 100% life
-// }
-// Character.prototype.loseHealth = function (amount) {
-//     this.currentHealth = this.currentHealth - amount
-// }
