@@ -1,0 +1,180 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    height: 100%;
+}
+body {
+    background-color: var(--bgcolor);
+    color: var(--textColor);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+:root {
+    --bgcolor: #030303;
+    --gridBgColor: #290000;
+    --textColor: #930C10;
+    --color0: #F7CE65;
+    --color1: #c69a6c;
+
+}
+.game-menu {
+    /* visibility: collapse; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+}
+.game-menu-title {
+    font-size: 46px;
+}
+
+.character-creation {
+    /* visibility: collapse; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    height: auto;
+}
+.game-container {
+    visibility: collapse;
+    height: 80%;
+    width: 40%;
+    /* background-color: rgb(176, 172, 172); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.characters-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.class-icon {
+    height: 36px;
+}
+
+.player-one-container {
+    display: grid;
+    grid-template-columns: 15% 80%;
+    grid-template-rows: 50% 50%;
+    width: 150px;
+    grid-gap: 5px 20px;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+}
+
+.player-two-container {
+    display: grid;
+    grid-template-columns: 80% auto;
+    grid-template-rows: 50% 50%;
+    width: 150px;
+    grid-gap: 5px 20px;
+    text-align: left;
+    justify-content: right;
+    align-content: center;
+}
+
+.player-one-container > .player-icon {
+    grid-column: 1 / 1;
+    grid-row: 1 / 3;
+}
+
+.player-one-container > .player-name {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+/* .player-one-container > .player-class {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+} */
+
+.player-two-container > .player-icon {
+    grid-column: 3 / 3;
+    grid-row: 1 / 3;
+}
+
+.player-two-container > .player-name {
+    grid-column: 2 / 2;
+    grid-row: 1 / 2;
+}
+
+.player-two-container > .player-health-bar {
+    grid-column: 2 / 2;
+    grid-row: 2 / 2;
+}
+
+.characters-info {
+    color: var(--textColor);
+}
+
+.player-health-bar {
+    color: white;
+    background-color: red;
+    background: linear-gradient(90deg, rgba(5,255,0,1) 1%, rgba(173,0,0,1) 1%, rgba(255,0,0,1) 100%);
+    width: 100px;
+    text-align: center;
+    height: 100%;
+}
+
+
+/* .player-two-container > .player-class {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+} */
+
+.game-board {
+    height: 100%;
+    width: 100%;
+    background-color: var(--bgcolor)
+}
+.game-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 100%;
+    justify-content: center;
+    color: #ff9b8bad;
+}
+
+.game-grid > * {
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+}
+
+.game-grid > div:nth-child(1n+4) {
+    border-top: 1px solid var(--color0);
+}
+.game-grid > div:nth-child(3n+0) {
+    border-left: 1px solid var(--color0);
+}
+.game-grid > div:nth-child(3n-1) {
+    border-left: 1px solid var(--color0);
+}
+
+.start-game-container {
+    visibility: collapse;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}

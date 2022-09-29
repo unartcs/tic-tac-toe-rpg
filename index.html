@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe RPG</title>
+    <link rel=stylesheet href="style.css">
+    <script src="game.js" defer></script>
+</head>
+
+<body>
+        <div class="game-menu">
+            <h1 class="game-menu-title">Create a character!</h1>
+            <form name="character-creation" class="character-creation">
+                <label for="playerName">Player Name: </label>
+                <input type="text" id="playerName" name="playerName" required>
+                <label for="playerClass">Choose a class: </label>
+                <select name="playerClass" id="playerClass">
+                    <option value="warrior">Warrior</option>
+                    <option value="archer">Archer</option>
+                    <option value="mage">Mage</option>
+                </select>
+                <button class='create-button' type="submit" value="Submit">Submit</button>
+            </form>
+        </div>
+        <div class="start-game-container">
+            <button class="startgame-button">Start Game</button>
+            <button class="goback-button">Go Back</button>
+        </div>
+        <div class="game-container">
+            <div class="characters-info">
+                <div class="player-one-container">
+                    <span class="player-icon"><img class='class-icon' src="./images/sword-color.png" alt="Sword Icon"></span>
+                    <span class="player-name">PlayerOne</span>
+                    <span class="player-health-bar">50 / 120</span>
+                </div>
+                <div class="player-two-container">
+                    <span class="player-icon"><img class='class-icon' src="./images/wand-color.png" alt="Sword Icon"></span>
+                    <span class="player-name">PlayerTwo</span>
+                    <span class="player-health-bar">50 / 80</span>
+                </div>
+            </div>
+            <div class="game-board">
+                <div class="game-grid">
+                    <div class="0" id="0"></div>
+                    <div class="1" id="1"></div>
+                    <div class="2" id="2"></div>
+                    <div class="3" id="3"></div>
+                    <div class="4" id="4"></div>
+                    <div class="5" id="5"></div>
+                    <div class="6" id="6"></div>
+                    <div class="7" id="7"></div>
+                    <div class="8" id="8"></div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
